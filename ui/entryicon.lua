@@ -80,7 +80,7 @@ function GPB_EntryIcon:ModifyEntryTemplate(itemList, templateName, mode)
 				end
 			else
 				tex_research:SetHidden(false)
-				if itemFlagStatus == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE then 
+				if itemFlagStatus == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE then 
 				  tex_research:SetColor(0, 255, 0)
 				elseif itemFlagStatus == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_DUPLICATED then 
 				  tex_research:SetColor(255, 255, 0)
@@ -167,7 +167,7 @@ function HookDestructionList()
 	local testfunction = _G.ZO_SharedSmithingExtraction_IsExtractableOrRefinableItem
 	_G.ZO_SharedSmithingExtraction_IsExtractableOrRefinableItem = function (bagId, slotIndex) 
 		if GamePadBuddy.curSavedVars.hideresearchables then
-			local isResearchItem = GamePadBuddy:GetItemFlagStatus(bagId, slotIndex) == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE
+			local isResearchItem = GamePadBuddy:GetItemFlagStatus(bagId, slotIndex) == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE
 			return testfunction(bagId, slotIndex) and not isResearchItem
 		else
 			return testfunction(bagId, slotIndex)
@@ -179,7 +179,7 @@ function HookImprovementList()
 	local testfunction = _G.ZO_SharedSmithingImprovement_CanItemBeImproved
 	_G.ZO_SharedSmithingImprovement_CanItemBeImproved = function (itemData) 
 		if GamePadBuddy.curSavedVars.hideresearchables then
-			local isResearchItem = GamePadBuddy:GetItemFlagStatus(itemData.bagId, itemData.slotIndex) == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE
+			local isResearchItem = GamePadBuddy:GetItemFlagStatus(itemData.bagId, itemData.slotIndex) == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE
 			return testfunction(itemData) and not isResearchItem
 		else
 			return testfunction(itemData)

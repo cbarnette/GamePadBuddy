@@ -41,7 +41,7 @@ GamePadBuddy.CONST.armorRImap = { [ARMORTYPE_LIGHT] = { [EQUIP_TYPE_CHEST] = 1, 
 GamePadBuddy.CONST.weaponRImap = { [WEAPONTYPE_AXE] = 1, [WEAPONTYPE_HAMMER] = 2, [WEAPONTYPE_SWORD] = 3, [WEAPONTYPE_TWO_HANDED_AXE] = 4, [WEAPONTYPE_TWO_HANDED_HAMMER] = 5, [WEAPONTYPE_TWO_HANDED_SWORD] = 6, [WEAPONTYPE_DAGGER] = 7,
           [WEAPONTYPE_BOW] = 1, [WEAPONTYPE_FIRE_STAFF] = 2, [WEAPONTYPE_FROST_STAFF] = 3, [WEAPONTYPE_LIGHTNING_STAFF] = 4, [WEAPONTYPE_HEALING_STAFF] = 5, [WEAPONTYPE_SHIELD] = 6, [WEAPONTYPE_PROP] = -1
         }
-GamePadBuddy.CONST.ItemFlags = { ITEM_FLAG_TRAIT_RESEARABLE = 1, ITEM_FLAG_TRAIT_DUPLICATED = 2, ITEM_FLAG_TRAIT_KNOWN = 3, ITEM_FLAG_TRAIT_RESEARCHING = 4, ITEM_FLAG_TRAIT_INTRICATE = 5, ITEM_FLAG_TRAIT_ORNATE = 6, ITEM_FLAG_TCC_QUEST = 100, ITEM_FLAG_TCC_USABLE = 101, ITEM_FLAG_TCC_USELESS = 102, ITEM_FLAG_NONE = -1}
+GamePadBuddy.CONST.ItemFlags = { ITEM_FLAG_TRAIT_RESEARCHABLE = 1, ITEM_FLAG_TRAIT_DUPLICATED = 2, ITEM_FLAG_TRAIT_KNOWN = 3, ITEM_FLAG_TRAIT_RESEARCHING = 4, ITEM_FLAG_TRAIT_INTRICATE = 5, ITEM_FLAG_TRAIT_ORNATE = 6, ITEM_FLAG_TCC_QUEST = 100, ITEM_FLAG_TCC_USABLE = 101, ITEM_FLAG_TCC_USELESS = 102, ITEM_FLAG_NONE = -1}
 GamePadBuddy.CONST.TCCQuestType = { TCC_QUEST_GAMES_DOLLS_STATUES, TCC_QUEST_RITUAL_ODDITIES, TCC_QUEST_WRITINGS_MAPS, TCC_QUEST_COSMETICS_LINENS_ACCESSORIES, TCC_QUEST_DRINKWARE_UTENSILS_DISHES}
 GamePadBuddy.CONST.TCCQuestTags = { 
 	[TCC_QUEST_GAMES_DOLLS_STATUES] = {["Games"] = true, ["Dolls"] = true, ["Statues"] = true},
@@ -375,25 +375,25 @@ function GamePadBuddy:GetItemFlagStatus(bagId, slotIndex)
 		  
 		  --update cache      
 		  GamePadBuddy.ResearchTraits[craftType][rIndex][traitIndex] = {uniqueId, quality, itemLevel} 
-		  returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE
+		  returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE
 		else 
 		  --already have a recorded item, check if the same
 		  local uniqueId = getItemId(bagId, slotIndex)
 		  local quality = GetItemLinkQuality(itemLink)
 		  local itemLevel = GetItemLevel(bagId, slotIndex)
 		  if status == uniqueId then
-			returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE
+			returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE
 		  else
 			--checck quality and level
 			if quality < curQuality then
 				--replace
 				GamePadBuddy.ResearchTraits[craftType][rIndex][traitIndex] = {uniqueId, quality, itemLevel} 
-				returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE
+				returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE
 			elseif quality == curQuality then
 				--check itemLevel
 				if itemLevel < curLevel then
 					GamePadBuddy.ResearchTraits[craftType][rIndex][traitIndex] = {uniqueId, quality, itemLevel} 
-					returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE
+					returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE
 				else
 					returnStatus = GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_DUPLICATED
 				end
@@ -424,7 +424,7 @@ local function AddInventoryPreInfo(tooltip, bagId, slotIndex)
 		local _, traitText = GetItemLinkTraitInfo(itemLink) 
 		local itemFlagStatus, name = GamePadBuddy:GetItemFlagStatus(bagId, slotIndex)
 		local traitString = nil
-		if itemFlagStatus == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARABLE then
+		if itemFlagStatus == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_RESEARCHABLE then
 		  traitString = "|c00FF00Researchable|r"
 		elseif itemFlagStatus == GamePadBuddy.CONST.ItemFlags.ITEM_FLAG_TRAIT_DUPLICATED then
 		  traitString = "|cFFFF00Duplicated|r"
