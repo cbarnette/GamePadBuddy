@@ -2,13 +2,13 @@
 	<Controls>
 		<Control name="GPB_EntryIcon" virtual="true">
 			<Controls>
-				<Texture name="$(parent)Research" textureFile="esoui/art/inventory/gamepad/gp_inventory_icon_craftbag_itemtrait.dds" hidden="true">
+				<Texture name="$(parent)Research" textureFile="esoui/art/inventory/gamepad/gp_inventory_trait_not_researched_icon.dds" hidden="true">
 					<AnchorFill/>
 				</Texture>
-				<Texture name="$(parent)Intricate" textureFile="esoui/art/inventory/gamepad/gp_inventory_icon_craftbag_all.dds" hidden="true">
+				<Texture name="$(parent)Intricate" textureFile="esoui/art/inventory/gamepad/gp_inventory_trait_intricate_icon.dds" hidden="true">
 					<AnchorFill/>
 				</Texture>
-				<Texture name="$(parent)Ornate" textureFile="esoui/art/inventory/gamepad/gp_inventory_icon_currencies.dds" hidden="true">
+				<Texture name="$(parent)Ornate" textureFile="esoui/art/inventory/gamepad/gp_inventory_trait_ornate_icon.dds" hidden="true">
 					<AnchorFill/>
 				</Texture>
 				<Texture name="$(parent)TCCQuest" textureFile="esoui/art/inventory/gamepad/gp_inventory_icon_quest.dds" hidden="true">
